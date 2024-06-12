@@ -1,30 +1,35 @@
 package com.example.educ.controller;
 
-import com.example.educ.entity.School;
+import com.example.educ.entity.ExternalApi;
 import com.example.educ.service.ExternalApiService;
 
 import java.util.List;
 
+import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.web.bind.annotation.GetMapping;
 import org.springframework.web.bind.annotation.PostMapping;
+import org.springframework.web.bind.annotation.RequestMapping;
 import org.springframework.web.bind.annotation.RestController;
 
 @RestController
+@RequestMapping("/pageapi")
 public class ExternalApiController {
+	@Autowired
+    private ExternalApiService externalApiService;
+    //ExternalApiController() {}
+//    public ExternalApiController(ExternalApiService externalApiService) {
+//        this.externalApiService = externalApiService;
+//    }
+    
+    
 
-    private final ExternalApiService externalApiService;
-
-    public ExternalApiController(ExternalApiService externalApiService) {
-        this.externalApiService = externalApiService;
-    }
-
-    @GetMapping("/get/users")
-    public List<School> getUsers() {
-        return externalApiService.getUsers();
+    @GetMapping("/getexternalusers")
+    public String updateValues()  {
+        return externalApiService.updateValues() ;
     }
     
-    @PostMapping("/api")
-	public void postalldata() {
-		 this.externalApiService.postalldata();
+    @PostMapping("/externalapi")
+	public void insertApiValue(final int page) {
+		 this.externalApiService.insertApiValue(page);
 	}
 }

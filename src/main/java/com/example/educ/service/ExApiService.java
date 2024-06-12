@@ -30,14 +30,19 @@ public class ExApiService {
 		return Arrays.asList(responseEntity.getBody());
 	}
 	
-	public void postData() {
+	public List<ExApi> postData() {
 		List<ExApi> getAllData=getData();
 		exapiRepository.saveAll(getAllData);
+		return getAllData;
 	}
 	
+//	public ExApi createDatas(ExApi api) {
+//		return this.exapiRepository.save(api);
+//	}
 	public ExApi createData(ExApi exapi){
 		ResponseEntity<ExApi>responseEntity=restTemplate.postForEntity(url, exapi, ExApi.class);
-		return exapiRepository.save(exapi);
+		exapiRepository.save(exapi);
+		return exapi;
 	}
 	
 	

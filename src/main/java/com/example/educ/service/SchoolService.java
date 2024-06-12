@@ -17,7 +17,7 @@
 //	
 //	
 //	public School createSchool(final School school) {
-//		school.setCreatedAt(Instant.now());
+//		///school.setCreatedAt(Instant.now());
 //		return this.schoolRepository.save(school);
 //	}
 //	
@@ -26,7 +26,7 @@
 //	}
 //
 //	public School postalldata() {
-//		List<School>getalldata=
+//		//List<School>getalldata=
 //		return null;
 //	}
 //
