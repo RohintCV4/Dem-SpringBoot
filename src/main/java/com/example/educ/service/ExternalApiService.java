@@ -46,7 +46,7 @@ public class ExternalApiService {
 		final JsonNode jsonNode=restTemplate.getForObject(url, JsonNode.class).get("data");
 		final List<ExternalApi> apiData=new LinkedList<>();
 		if(!jsonNode.isEmpty()) {
-			System.out.println(jsonNode.size());
+			//System.out.println(jsonNode.size());
 			for(final JsonNode jsonData:jsonNode) {
 				apiData.add(setValue(jsonData));
 			}
