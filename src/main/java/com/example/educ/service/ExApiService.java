@@ -4,8 +4,14 @@ import java.util.Arrays;
 import java.util.List;
 
 import org.springframework.beans.factory.annotation.Autowired;
+import org.springframework.http.HttpEntity;
+import org.springframework.http.HttpMethod;
+import org.springframework.http.HttpStatus;
+import org.springframework.http.HttpStatusCode;
 import org.springframework.http.ResponseEntity;
+import org.springframework.stereotype.Repository;
 import org.springframework.stereotype.Service;
+import org.springframework.web.bind.annotation.PathVariable;
 import org.springframework.web.client.RestTemplate;
 
 import com.example.educ.entity.ExApi;
@@ -17,7 +23,7 @@ public class ExApiService {
 	private ExApiRepository exapiRepository;
 	@Autowired
 	RestTemplate restTemplate;
-	private final String url="https://gorest.co.in/public/v2/comments";
+	private final String url="https://666924352e964a6dfed3f343.mockapi.io/userapi/v1";
 	
 	public List<ExApi> getData(){
 		ResponseEntity<ExApi[]>responseEntity=restTemplate.getForEntity(url, ExApi[].class);
@@ -27,5 +33,38 @@ public class ExApiService {
 	public void postData() {
 		List<ExApi> getAllData=getData();
 		exapiRepository.saveAll(getAllData);
+	}
+	
+	public ExApi createData(ExApi exapi){
+		ResponseEntity<ExApi>responseEntity=restTemplate.postForEntity(url, exapi, ExApi.class);
+		return exapiRepository.save(exapi);
+	}
+	
+	
+	public ExApi updateData(Long id,ExApi exapi) {
+		String link=url+"/"+id;
+		ResponseEntity<ExApi> responseEntity=restTemplate.exchange(link, HttpMethod.PUT,new HttpEntity<>(exapi),ExApi.class);
+		if(responseEntity.getStatusCode()==HttpStatus.OK) {
+			ExApi updatedUser=responseEntity.getBody();
+			return exapiRepository.save(updatedUser);
+		}
+		else {
+			throw new RuntimeException("Error Occured");
+		}
+	}
+
+	public ExApi deleteData(Long id) {
+		String link=url+"/"+id;
+		ResponseEntity<ExApi> responseEntity=restTemplate.exchange(link, HttpMethod.DELETE,HttpEntity.EMPTY,ExApi.class);
+		//boolean exists=exapiRepository.existsById(id);
+		if(responseEntity.getStatusCode()==HttpStatus.OK) {
+			ExApi deleteUser=responseEntity.getBody();
+			this.exapiRepository.delete(deleteUser);
+		}
+		
+		else {
+			throw new RuntimeException("Error Occured");
+		}
+		return null;
 	}
 }
