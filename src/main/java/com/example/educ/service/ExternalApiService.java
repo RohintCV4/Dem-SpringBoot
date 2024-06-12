@@ -39,13 +39,14 @@ public class ExternalApiService {
 //		return Arrays.asList(responseEntity.getBody());
 //	}
 	private RestTemplate restTemplate =new RestTemplate();
-	public String insertApiValue(final int page){
+	public String insertApiValue(final Long page){
 		//RestTemplate restTemplate =new RestTemplate();
 		String url="https://reqres.in/api/users?page="+page;
 		String response;
 		final JsonNode jsonNode=restTemplate.getForObject(url, JsonNode.class).get("data");
 		final List<ExternalApi> apiData=new LinkedList<>();
 		if(!jsonNode.isEmpty()) {
+			System.out.println(jsonNode.size());
 			for(final JsonNode jsonData:jsonNode) {
 				apiData.add(setValue(jsonData));
 			}

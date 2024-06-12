@@ -47,7 +47,7 @@ public class ExApiController {
 	@PutMapping("/{id}")
 	public ExApi putData(@PathVariable Long id, @RequestBody ExApi exapi) {
 
-		return exapiService.updateData(id, exapi);
+		return exapiService.updateData(id, exapi); 
 	}
 
 	@DeleteMapping("/{id}")
