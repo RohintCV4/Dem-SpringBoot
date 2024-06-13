@@ -1,4 +1,5 @@
 package com.example.educ.service;
+import java.util.ArrayList;
 import java.util.Arrays;
 import java.util.LinkedList;
 import java.util.List;
@@ -20,8 +21,8 @@ public class ExternalApiService {
 	@Autowired
 	ExternalApiRepository externalapiRepository;
 	
-	//@Autowired
-	//RestTemplate restTemplate;
+	@Autowired
+	RestTemplate restTemplate;
 	
 //    private final String url = "https://gorest.co.in/public/v2/users";
 //
@@ -38,13 +39,23 @@ public class ExternalApiService {
 //		ResponseEntity<ExternalApi[]>responseEntity=restTemplate.getForEntity(url, ExternalApi[].class);
 //		return Arrays.asList(responseEntity.getBody());
 //	}
-	private RestTemplate restTemplate =new RestTemplate();
+//	private RestTemplate restTemplate =new RestTemplate();
+	public ExternalApi setValue(JsonNode jsonNode) {
+		ExternalApi api=new ExternalApi();
+		api.setId(jsonNode.findValue("id").asLong());
+		api.setFirst_name(jsonNode.findValue("first_name").asText());
+		api.setLast_name(jsonNode.findValue("last_name").asText());
+		api.setEmail(jsonNode.findValue("email").asText());
+		api.setAvatar(jsonNode.findValue("avatar").asText());
+		return api;
+	}
 	public String insertApiValue(final Long page){
 		//RestTemplate restTemplate =new RestTemplate();
 		String url="https://reqres.in/api/users?page="+page;
 		String response;
 		final JsonNode jsonNode=restTemplate.getForObject(url, JsonNode.class).get("data");
-		final List<ExternalApi> apiData=new LinkedList<>();
+		final List<ExternalApi> apiData=new ArrayList<>();
+		
 		if(!jsonNode.isEmpty()) {
 			//System.out.println(jsonNode.size());
 			for(final JsonNode jsonData:jsonNode) {
@@ -59,26 +70,18 @@ public class ExternalApiService {
 		return response;
 	}
 
-	public String updateValues() {
-		String url="https://reqres.in/api/users/2";
-		String response;
-		JsonNode jsonNode=restTemplate.getForObject(url,JsonNode.class).get("data");
-		if(!jsonNode.isEmpty()) {
-			this.externalapiRepository.save(setValue(jsonNode));
-			response="update success";
-		}
-		else {
-			response="no data found";
-		}
-		return response;
-	}
-	public ExternalApi setValue(JsonNode jsonNode) {
-		ExternalApi api=new ExternalApi();
-		api.setId(jsonNode.findValue("id").asLong());
-		api.setFirst_name(jsonNode.findValue("first_name").asText());
-		api.setLast_name(jsonNode.findValue("last_name").asText());
-		api.setEmail(jsonNode.findValue("email").asText());
-		api.setAvatar(jsonNode.findValue("avatar").asText());
-		return api;
-	}
+//	public String updateValues() {
+//		String url="https://reqres.in/api/users/2";
+//		String response;
+//		JsonNode jsonNode=restTemplate.getForObject(url,JsonNode.class).get("data");
+//		if(!jsonNode.isEmpty()) {
+//			this.externalapiRepository.save(setValue(jsonNode));
+//			response="update success";
+//		}
+//		else {
+//			response="no data found";
+//		}
+//		return response;
+//	}
+	
 }

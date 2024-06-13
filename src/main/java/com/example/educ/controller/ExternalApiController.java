@@ -21,10 +21,10 @@ public class ExternalApiController {
     
     
 
-    @GetMapping("/getexternalusers")
-    public String updateValues()  {
-        return externalApiService.updateValues() ;
-    }
+//    @GetMapping("/getexternalusers")
+//    public String updateValues()  {
+//        return externalApiService.updateValues() ;
+//    }
     
     @PostMapping("/externalapi/{id}")
 	public void insertApiValue(@PathVariable Long id) {
