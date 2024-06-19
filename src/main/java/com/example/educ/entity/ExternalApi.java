@@ -20,7 +20,7 @@ public class ExternalApi {
 	private String email;
 	@Column
 	private String avatar;
-	
+
 //	@Id
 //	@Column
 //	private Long id;

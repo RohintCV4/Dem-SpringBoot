@@ -23,11 +23,11 @@ public class ExApiController {
 
 //	@PostMapping("/exapi")
 //	@RequestMapping(value = "/exapi", method = RequestMethod.POST)
-	
+
 //	public ExApi createDatas(@RequestBody ExApi api) {
 //		return this.exapiService.createData(api);
 //	}
-	
+
 	@PostMapping("/exapi")
 	public List<ExApi> postData() {
 		return this.exapiService.postData();
@@ -45,15 +45,15 @@ public class ExApiController {
 
 	@PutMapping("/{id}")
 	public ExApi putData(@PathVariable Long id, @RequestBody ExApi exapi) {
-		
-		return exapiService.updateData(id, exapi); 
+
+		return exapiService.updateData(id, exapi);
 	}
 
 	@DeleteMapping("/{id}")
 	public ExApi deleteData(@PathVariable Long id) {
 
 		return exapiService.deleteData(id);
-		
+
 	}
-	
+
 }

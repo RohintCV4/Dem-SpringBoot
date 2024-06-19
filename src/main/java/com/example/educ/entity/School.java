@@ -10,21 +10,21 @@ import jakarta.persistence.Table;
 @Entity
 @Table
 public class School {
-	
+
 	@Id
 	@GeneratedValue(strategy = GenerationType.IDENTITY)
 	@Column
-	private Long id; 
-	
+	private Long id;
+
 	@Column
 	private String avatar;
-	
+
 	@Column
 	private String email;
-	
+
 	@Column
 	private String first_name;
-	
+
 	@Column
 	private String last_name;
 
@@ -68,17 +68,11 @@ public class School {
 		this.last_name = last_name;
 	}
 
-	
-
-
-	
-
 //	public void setCreatedAt(Instant now) {
 //		// TODO Auto-generated method stub
 //		
 //	}
-	
-	
+
 //	public School(){}
 //	
 //    public School(Long id,String name,String address1){
@@ -86,6 +80,5 @@ public class School {
 //		this.name=name;
 //		this.address1=address1;
 //	}
-	
-	
+
 }
