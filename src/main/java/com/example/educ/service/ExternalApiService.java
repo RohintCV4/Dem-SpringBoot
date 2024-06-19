@@ -1,15 +1,11 @@
 package com.example.educ.service;
 import java.util.ArrayList;
-import java.util.Arrays;
-import java.util.LinkedList;
 import java.util.List;
 
 import org.springframework.beans.factory.annotation.Autowired;
-import org.springframework.http.ResponseEntity;
 import org.springframework.stereotype.Service;
 import org.springframework.web.client.RestTemplate;
 
-import com.example.educ.entity.ExApi;
 import com.example.educ.entity.ExternalApi;
 import com.example.educ.repository.ExternalApiRepository;
 import com.fasterxml.jackson.databind.JsonNode;
@@ -69,7 +65,7 @@ public class ExternalApiService {
 		}
 		return response;
 	}
-
+	
 //	public String updateValues() {
 //		String url="https://reqres.in/api/users/2";
 //		String response;

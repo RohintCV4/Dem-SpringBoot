@@ -7,11 +7,8 @@ import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.http.HttpEntity;
 import org.springframework.http.HttpMethod;
 import org.springframework.http.HttpStatus;
-import org.springframework.http.HttpStatusCode;
 import org.springframework.http.ResponseEntity;
-import org.springframework.stereotype.Repository;
 import org.springframework.stereotype.Service;
-import org.springframework.web.bind.annotation.PathVariable;
 import org.springframework.web.client.RestTemplate;
 
 import com.example.educ.entity.ExApi;
@@ -34,6 +31,7 @@ public class ExApiService {
 		List<ExApi> getAllData=getData();
 		exapiRepository.saveAll(getAllData);
 		return getAllData;
+//		this.exapiRepository.saveAll(getData());
 	}
 	
 //	public ExApi createDatas(ExApi api) {
